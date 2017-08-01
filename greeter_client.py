@@ -33,8 +33,8 @@ from __future__ import print_function
 
 import grpc
 
-import helloworld_pb2
-import helloworld_pb2_grpc
+from common import helloworld_pb2
+from common import helloworld_pb2_grpc
 
 
 def run():
