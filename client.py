@@ -36,13 +36,16 @@ import grpc
 from common import helloworld_pb2
 from common import helloworld_pb2_grpc
 
+class RpcClient(object):
+    def __init__(self):
+        channel = grpc.insecure_channel('localhost:50051')
+        self.stub = helloworld_pb2_grpc.GreeterStub(channel)
 
-def run():
-  channel = grpc.insecure_channel('localhost:50051')
-  stub = helloworld_pb2_grpc.GreeterStub(channel)
-  response = stub.SayHello(helloworld_pb2.HelloRequest(name='you'))
-  print("Greeter client received: " + response.message)
+    def say_hi(self ):
+        response = self.stub.SayHello(helloworld_pb2.HelloRequest(name='you'))
+        return response.message
 
 
 if __name__ == '__main__':
-  run()
+    client = RpcClient()
+    print(client.say_hi())
