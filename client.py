@@ -32,6 +32,7 @@
 
 from __future__ import print_function
 import time
+import traceback
 
 import grpc
 
@@ -54,6 +55,6 @@ if __name__ == '__main__':
     while True:
         try:
             print(client.say_hi())
-        except Exception as e:
-            print(e)
+        except:
+            traceback.print_exc()
         time.sleep(30)
