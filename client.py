@@ -41,8 +41,8 @@ from common import helloworld_pb2_grpc
 
 class RpcClient(object):
     def __init__(self):
-        channel = grpc.insecure_channel('localhost:50051')
-        self.stub = helloworld_pb2_grpc.GreeterStub(channel)
+        self.channel = grpc.insecure_channel('localhost:50051')
+        self.stub = helloworld_pb2_grpc.GreeterStub(self.channel)
 
     def say_hi(self ):
         response = self.stub.SayHello(helloworld_pb2.HelloRequest(name='you'))
